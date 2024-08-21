@@ -5,6 +5,8 @@ namespace App\Providers;
 use Native\Laravel\Facades\Window;
 use Native\Laravel\Contracts\ProvidesPhpIni;
 use Native\Laravel\Facades\MenuBar;
+use Native\Laravel\Menu\Menu;
+use Native\Laravel\Facades\Notification;
 
 class NativeAppServiceProvider implements ProvidesPhpIni
 {
@@ -15,6 +17,22 @@ class NativeAppServiceProvider implements ProvidesPhpIni
     public function boot(): void
     {
         Menubar::create();
+
+
+        Menu::new()
+            ->appMenu()
+            ->windowMenu()
+            ->viewMenu()
+            ->editMenu()
+            ->submenu(
+                'Laravel',
+                Menu::new()
+                    ->link('https://laravel.com/docs/11.x', 'Documentation')
+            );
+
+        Window::open()
+            ->rememberState()
+            ->closable(false);
     }
 
     /**

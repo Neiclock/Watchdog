@@ -4,8 +4,9 @@ namespace App\Providers;
 
 use App\Notifications\NativeNotificationChannel;
 use Illuminate\Notifications\ChannelManager;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider;
+use Native\Laravel\Facades\Notification;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        Paginator::useBootstrap();
         //
     }
 
@@ -22,10 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Notification::resolved(function (ChannelManager $service): void {
-            $service->extend('native', function (): NativeNotificationChannel {
-                return new NativeNotificationChannel();
-            });
-        });
+
     }
 }

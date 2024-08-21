@@ -13,7 +13,7 @@ return [
         'notifications' => [
             \Spatie\UptimeMonitor\Notifications\Notifications\UptimeCheckFailed::class => [SendNativePhpNotification::class],
             \Spatie\UptimeMonitor\Notifications\Notifications\UptimeCheckRecovered::class => ['slack'],
-            \Spatie\UptimeMonitor\Notifications\Notifications\UptimeCheckSucceeded::class => [],
+            \Spatie\UptimeMonitor\Notifications\Notifications\UptimeCheckSucceeded::class => [SendNativePhpNotification::class],
 
             \Spatie\UptimeMonitor\Notifications\Notifications\CertificateCheckFailed::class => ['slack'],
             \Spatie\UptimeMonitor\Notifications\Notifications\CertificateExpiresSoon::class => ['slack'],
@@ -70,7 +70,7 @@ return [
          * When an uptime check fails we'll check the uptime for that monitor every time `monitor:check-uptime`
          * runs regardless of this setting.
          */
-        'run_interval_in_minutes' => 5,
+        'run_interval_in_minutes' => 1,
 
         /*
          * To speed up the uptime checking process the package can perform the uptime check of several
