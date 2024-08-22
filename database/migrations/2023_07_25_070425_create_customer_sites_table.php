@@ -12,7 +12,6 @@ return new class extends Migration {
     {
         Schema::create('customer_sites', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('website_id');
             $table->string('name');
             $table->string('url');
             $table->unsignedTinyInteger('is_active')->default(1);
@@ -24,7 +23,6 @@ return new class extends Migration {
             $table->timestamp('last_check_at')->nullable();
             $table->timestamp('last_notify_user_at')->nullable();
             $table->timestamps();
-            $table->foreign('website_id')->references('id')->on('websites')->onDelete('cascade');
 
         });
     }
